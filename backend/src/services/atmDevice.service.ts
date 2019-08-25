@@ -1,0 +1,3 @@
+// authorizeAtm
+// getAtmState
+// updateAtmState

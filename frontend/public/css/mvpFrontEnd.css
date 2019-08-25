@@ -1,0 +1,56 @@
+.invisible {
+  display: none;
+}
+.bottom {
+  position: absolute;
+  bottom: 0;
+}
+.screen {
+  width: 80em;
+  height: 20em;
+  position: relative;
+  background-color: lightcyan;
+}
+.button {
+  height: 3em;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+button:disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: auto;
+}
+.button-green {
+  background-color: chartreuse;
+  color: black;
+  border: 2px solid chartreuse;
+}
+.button-red {
+  background-color: firebrick;
+  color: black;
+  border: 2px solid firebrick;
+}
+.button-link {
+  background: none !important;
+  padding: 0 !important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.info-pannel {
+  padding: 4px;
+  background-color: white;
+  height: 100%;
+  overflow: auto;
+  text-align: justify;
+}

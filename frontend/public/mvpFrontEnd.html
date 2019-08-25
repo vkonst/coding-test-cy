@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Coding test CY. MVP front-end</title>
+    <meta
+      name="description"
+      content="Proof-of-concept/debuging FE for CY coding assignment"
+    />
+    <link type="text/css" href="css/mvpFrontEnd.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/mvpFrontEnd.js"></script>
+  </head>
+  <body>
+    <div id="title"></div>
+    <div id="boot-screen" class="screen">
+      <hr />
+      Booting... Please wait...<br />
+      (toggle the service screen to read logs or change the ATM Device ID, if
+      needed)<br />
+      <button
+        id="end-boot-btn"
+        class="button-link"
+        onclick="mvpFrontend.bootEndOnclick();"
+      >
+        >>> click to continue <<<
+      </button>
+    </div>
+    <div id="welcome-screen" class="screen invisible">
+      <hr />
+      <h2>Welcome!</h2>
+      <div class="bottom">
+        <button
+          id="start-btn"
+          class="button button-green"
+          type="button"
+          onclick="mvpFrontend.nextScreen();"
+        >
+          start
+        </button>
+      </div>
+    </div>
+    <div id="login-screen" class="screen invisible">
+      <hr />
+      <h2>Please authorize</h2>
+      <form>
+        client id:
+        <input type="text" id="client-id" title="client id" size="20" />
+        password:
+        <input
+          type="text"
+          id="client-passw"
+          title="client passwrod"
+          size="60"
+        />
+        <div class="bottom">
+          <button
+            id="authorize-btn"
+            class="button button-green"
+            type="button"
+            onclick="mvpFrontend.clientLoginOnclick();"
+          >
+            Authorize
+          </button>
+          <button
+            id="cancel-authorize-btn"
+            class="button button-red"
+            type="button"
+            onclick="mvpFrontend.nextScreen('back');"
+          >
+            Cancell
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="withdraw-screen" class="screen invisible">
+      <hr />
+      <h2>Withdraw funds</h2>
+      <form>
+        <label for="ccy-select">Currency:</label>
+        <select id="ccy-select">
+          <option value="DKK">DKK</option>
+          <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
+          <option value="RUR">RUR</option>
+        </select>
+        Amount: <input type="text" id="amount" title="amount" size="20" />
+        <div class="bottom">
+          <button
+            id="withdraw-btn"
+            class="button button-green"
+            type="button"
+            onclick="mvpFrontend.withdrawOnclick();"
+          >
+            Withdraw
+          </button>
+          <button
+            id="cancel-withdraw-btn"
+            class="button button-red"
+            type="button"
+            onclick="mvpFrontend.clientLogoutOnclick()"
+          >
+            Cancell
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="results-screen" class="screen invisible">
+      <hr />
+      <div id="success-msg" class="success-msg">Success! Thank you!</div>
+      <div id="failure-msg" class="failure-msg">
+        Ups... Something went wrong :(
+      </div>
+      <div class="bottom">
+        <button
+          id="another-try-btn"
+          class="button button-green"
+          type="button"
+          onclick="mvpFrontend.nextScreen();"
+        >
+          Ok. More...
+        </button>
+        <button
+          id="logout-btn"
+          class="button button-red"
+          type="button"
+          onclick="mvpFrontend.clientLogoutOnclick()"
+        >
+          Bye...
+        </button>
+      </div>
+    </div>
+    <button
+      id="togle-debug-btn"
+      class="button-link"
+      onclick="mvpFrontend.toggleServiceScreen();"
+    >
+      toggle the service screen
+    </button>
+    <div id="service-screen" class="screen bottom invisible">
+      <form id="atm-select-form">
+        <label for="atm-select">ATM Id:</label>
+        <select id="atm-select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </form>
+      <div id="info" class="info-pannel">Note messages bellow...<br /></div>
+    </div>
+  </body>
+</html>
