@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Coding test CY. MVP front-end</title>
-    <meta
-      name="description"
-      content="Proof-of-concept/debuging FE for CY coding assignment"
-    />
+    <meta name="description" content="MVP/debug FE for CY coding assignment" />
     <link type="text/css" href="css/mvpFrontEnd.css" rel="stylesheet" />
     <script type="text/javascript" src="js/mvpFrontEnd.js"></script>
   </head>
@@ -42,37 +39,36 @@
     <div id="login-screen" class="screen invisible">
       <hr />
       <h2>Please authorize</h2>
-      <form>
-        client id:
+      <form
+        onsubmit="mvpFrontend.clientLoginOnclick(); return false"
+        onreset="mvpFrontend.nextScreen('back')"
+      >
+        <label for="client-id">client id:</label>
         <input
           type="text"
           id="client-id"
           title="client id"
-          size="20"
+          size="10em"
+          value=""
           required
         />
-        password:
+        <label for="client-passw">password:</label>
         <input
           type="password"
           id="client-passw"
           title="client passwrod"
-          size="60"
+          size="20em"
+          value=""
           required
         />
         <div class="bottom">
-          <button
-            id="authorize-btn"
-            class="button button-green"
-            type="button"
-            onclick="mvpFrontend.clientLoginOnclick();"
-          >
+          <button id="authorize-btn" class="button button-green" type="submit">
             Authorize
           </button>
           <button
             id="cancel-authorize-btn"
             class="button button-red"
-            type="button"
-            onclick="mvpFrontend.nextScreen('back');"
+            type="reset"
           >
             Cancell
           </button>
@@ -82,7 +78,10 @@
     <div id="withdraw-screen" class="screen invisible">
       <hr />
       <h2>Withdraw funds</h2>
-      <form>
+      <form
+        onsubmit="mvpFrontend.withdrawOnclick(); return false"
+        onreset="mvpFrontend.clientLogoutOnclick()"
+      >
         <label for="ccy-select">Currency:</label>
         <select id="ccy-select">
           <option value="DKK">DKK</option>
@@ -90,22 +89,24 @@
           <option value="USD">USD</option>
           <option value="RUR">RUR</option>
         </select>
-        Amount:
-        <input type="number" id="amount" title="amount" size="20" required />
+        <label for="amount">Amount:</label>
+        <input
+          type="number"
+          id="amount"
+          title="amount"
+          size="20"
+          value="0"
+          min="1"
+          required
+        />
         <div class="bottom">
-          <button
-            id="withdraw-btn"
-            class="button button-green"
-            type="button"
-            onclick="mvpFrontend.withdrawOnclick();"
-          >
+          <button id="withdraw-btn" class="button button-green" type="submit">
             Withdraw
           </button>
           <button
             id="cancel-withdraw-btn"
             class="button button-red"
-            type="button"
-            onclick="mvpFrontend.clientLogoutOnclick()"
+            type="reset"
           >
             Cancell
           </button>
@@ -122,7 +123,6 @@
         <button
           id="another-try-btn"
           class="button button-green"
-          type="button"
           onclick="mvpFrontend.nextScreen();"
         >
           Ok. More...
@@ -130,7 +130,6 @@
         <button
           id="logout-btn"
           class="button button-red"
-          type="button"
           onclick="mvpFrontend.clientLogoutOnclick()"
         >
           Bye...
@@ -147,20 +146,19 @@
     <button
       id="log-cash-btn"
       class="button button-link"
-      type="button"
       onclick="mvpFrontend.logCash()"
     >
       log cashItems
     </button>
     <div id="service-screen" class="screen bottom invisible">
-      <form id="atm-select-form">
+      <div id="atm-select-form">
         <label for="atm-select">ATM Id:</label>
         <select id="atm-select">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
-      </form>
+      </div>
       <div id="info" class="info-pannel">Note messages bellow...<br /></div>
     </div>
   </body>

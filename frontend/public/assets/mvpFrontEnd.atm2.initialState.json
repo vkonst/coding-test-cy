@@ -4,90 +4,90 @@
   "cashItems": [
     {
       "item": {
-        "id": "DKK1000b",
+        "id": "EUR1000b",
         "form": "b",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 1000
       },
       "num": 0
     },
     {
       "item": {
-        "id": "DKK0500b",
+        "id": "EUR0500b",
         "form": "b",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 500
       },
       "num": 3
     },
     {
       "item": {
-        "id": "DKK0200b",
+        "id": "EUR0200b",
         "form": "b",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 200
       },
       "num": 2
     },
     {
       "item": {
-        "id": "DKK0100b",
+        "id": "EUR0100b",
         "form": "b",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 100
       },
       "num": 7
     },
     {
       "item": {
-        "id": "DKK0050b",
+        "id": "EUR0050b",
         "form": "b",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 50
       },
       "num": 8
     },
     {
       "item": {
-        "id": "DKK0020c",
+        "id": "EUR0020c",
         "form": "c",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 20
       },
       "num": 0
     },
     {
       "item": {
-        "id": "DKK0010c",
+        "id": "EUR0010c",
         "form": "c",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 10
       },
       "num": 100
     },
     {
       "item": {
-        "id": "DKK0005c",
+        "id": "EUR0005c",
         "form": "c",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 5
       },
       "num": 25
     },
     {
       "item": {
-        "id": "DKK0002c",
+        "id": "EUR0002c",
         "form": "c",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 2
       },
       "num": 25
     },
     {
       "item": {
-        "id": "DKK0001c",
+        "id": "EUR0001c",
         "form": "c",
-        "ccy": "DKK",
+        "ccy": "EUR",
         "value": 1
       },
       "num": 30
