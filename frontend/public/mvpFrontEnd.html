@@ -44,13 +44,20 @@
       <h2>Please authorize</h2>
       <form>
         client id:
-        <input type="text" id="client-id" title="client id" size="20" />
-        password:
         <input
           type="text"
+          id="client-id"
+          title="client id"
+          size="20"
+          required
+        />
+        password:
+        <input
+          type="password"
           id="client-passw"
           title="client passwrod"
           size="60"
+          required
         />
         <div class="bottom">
           <button
@@ -83,7 +90,8 @@
           <option value="USD">USD</option>
           <option value="RUR">RUR</option>
         </select>
-        Amount: <input type="text" id="amount" title="amount" size="20" />
+        Amount:
+        <input type="number" id="amount" title="amount" size="20" required />
         <div class="bottom">
           <button
             id="withdraw-btn"
@@ -135,6 +143,14 @@
       onclick="mvpFrontend.toggleServiceScreen();"
     >
       toggle the service screen
+    </button>
+    <button
+      id="log-cash-btn"
+      class="button button-link"
+      type="button"
+      onclick="mvpFrontend.logCash()"
+    >
+      log cashItems
     </button>
     <div id="service-screen" class="screen bottom invisible">
       <form id="atm-select-form">

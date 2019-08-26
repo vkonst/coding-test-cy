@@ -1,0 +1,96 @@
+{
+  "description": "Mock data to emulate initial state",
+  "token": "b490a6167f362ae9f515590695a72bdbfa0f97e3a9ca4d3bbd8bab9dfde2673f",
+  "cashItems": [
+    {
+      "item": {
+        "id": "DKK1000b",
+        "form": "b",
+        "ccy": "DKK",
+        "value": 1000
+      },
+      "num": 0
+    },
+    {
+      "item": {
+        "id": "DKK0500b",
+        "form": "b",
+        "ccy": "DKK",
+        "value": 500
+      },
+      "num": 3
+    },
+    {
+      "item": {
+        "id": "DKK0200b",
+        "form": "b",
+        "ccy": "DKK",
+        "value": 200
+      },
+      "num": 2
+    },
+    {
+      "item": {
+        "id": "DKK0100b",
+        "form": "b",
+        "ccy": "DKK",
+        "value": 100
+      },
+      "num": 7
+    },
+    {
+      "item": {
+        "id": "DKK0050b",
+        "form": "b",
+        "ccy": "DKK",
+        "value": 50
+      },
+      "num": 8
+    },
+    {
+      "item": {
+        "id": "DKK0020c",
+        "form": "c",
+        "ccy": "DKK",
+        "value": 20
+      },
+      "num": 0
+    },
+    {
+      "item": {
+        "id": "DKK0010c",
+        "form": "c",
+        "ccy": "DKK",
+        "value": 10
+      },
+      "num": 100
+    },
+    {
+      "item": {
+        "id": "DKK0005c",
+        "form": "c",
+        "ccy": "DKK",
+        "value": 5
+      },
+      "num": 25
+    },
+    {
+      "item": {
+        "id": "DKK0002c",
+        "form": "c",
+        "ccy": "DKK",
+        "value": 2
+      },
+      "num": 25
+    },
+    {
+      "item": {
+        "id": "DKK0001c",
+        "form": "c",
+        "ccy": "DKK",
+        "value": 1
+      },
+      "num": 30
+    }
+  ]
+}

@@ -3,7 +3,8 @@ const mvpFrontend = (() => {
 
   document.addEventListener("DOMContentLoaded", onload, false);
 
-  const INIT_STATE_URL = "service/initial-state";
+  const getInitialStateUrl = atmId =>
+    `assets/mvpFrontEnd.atm${atmId}.initialState.json`;
 
   const atmState = {
     atmId: 1,
@@ -16,11 +17,11 @@ const mvpFrontend = (() => {
   const router = {
     curScreenInd: 0,
     screens: [
-      ["boot-screen", 1, 0], // #0
-      ["welcome-screen", 2, 1], // #1
-      ["login-screen", 3, 1], // #2
-      ["withdraw-screen", 4, 1], // #3
-      ["results-screen", 3, 1] // #4
+      /*0*/ ["boot-screen", 1, 0],
+      /*1*/ ["welcome-screen", 2, 1],
+      /*2*/ ["login-screen", 3, 1],
+      /*3*/ ["withdraw-screen", 4, 1],
+      /*4*/ ["results-screen", 3, 1]
     ],
     onChanged: (fromId, toId) => {
       log(`Screen switched: ${fromId} => ${toId}`);
@@ -32,9 +33,10 @@ const mvpFrontend = (() => {
     bootEndOnclick,
     clientLoginOnclick,
     clientLogoutOnclick,
-    withdrawOnclick,
+    nextScreen,
+    logCash,
     toggleServiceScreen,
-    nextScreen
+    withdrawOnclick
   };
 
   function toggleServiceScreen() {
@@ -88,6 +90,9 @@ const mvpFrontend = (() => {
       atmState.atmId
     }</h1>`;
   }
+  function hideAtmSelector() {
+    document.getElementById("atm-select-form").classList.add("invisible");
+  }
   function clientLoginOnclick() {
     nextScreen();
   }
@@ -100,6 +105,7 @@ const mvpFrontend = (() => {
   function bootEndOnclick() {
     setInitialState()
       .then(() => nextScreen())
+      .then(() => hideAtmSelector())
       .catch(() => nextScreen("back"));
   }
 
@@ -109,22 +115,39 @@ const mvpFrontend = (() => {
     panel.innerHTML += `${args}<br\>`;
   }
 
+  function logCash() {
+    log(">>> cashItems:");
+    const [num, value] = atmState.cashItems.reduce(
+      ([totalNum, totalValue], e) => {
+        log(`${e.num} x ${e.item.ccy}${e.item.value} (${e.item.form})`);
+        return [totalNum + e.num, totalValue + e.num * e.item.value];
+      },
+      [0, 0]
+    );
+    log(`>>> Total: ${num} items valued to ${value}`);
+  }
+
   function readToken() {
-    return window.localStorage.getItem(`atm:${atmState.atmId}:token`);
+    const token = window.localStorage.getItem(`atm:${atmState.atmId}:token`);
+    log(`token ${token ? "read from" : "not found in"} the local storage`);
+    return token;
   }
 
   function saveToken(token) {
-    return window.localStorage.setItem(`atm:${atmState.atmId}:token`, token);
+    window.localStorage.setItem(`atm:${atmState.atmId}:token`, token);
+    log("token saved to the local storage");
   }
 
   function readCashItems() {
     const str = window.localStorage.getItem(`atm:${atmState.atmId}:cashItems`);
+    log(`cash items ${str ? "read from" : "not found in"} the local storage`);
     return str ? JSON.parse(str) : null;
   }
 
   function saveCashItems(items) {
     const str = JSON.stringify(items);
     window.localStorage.setItem(`atm:${atmState.atmId}:cashItems`, str);
+    log("cash items saved to the local storage");
   }
 
   function requestAndSaveInitialState(url) {
@@ -138,7 +161,7 @@ const mvpFrontend = (() => {
           log(errMsg);
           throw new Error(`errMsg`);
         }
-        response.json();
+        return response.json();
       })
       .then(({ token, cashItems }) => {
         if (typeof token !== "string" || !Array.isArray(cashItems)) {
@@ -148,27 +171,23 @@ const mvpFrontend = (() => {
       })
       .then(({ token, cashItems }) => {
         saveToken(token);
-        saveCahsItems(cashItems);
-        log(
-          `atm device initial state saved to local store(${token}, ${JSON.stringify(
-            cashItems
-          )})`
-        );
+        saveCashItems(cashItems);
+        return { token, cashItems };
       });
   }
 
   function setInitialState() {
     atmState.isAtmIdLocked = true;
-    const url = INIT_STATE_URL + `?atm_id=${atmState.atmId}`;
     const storedToken = readToken();
     const storedCashItems = readCashItems();
     const promise =
       storedToken && storedCashItems
         ? Promise.resolve({ token: storedToken, cashItems: storedCashItems })
-        : requestAndSaveInitialState(url);
+        : requestAndSaveInitialState(getInitialStateUrl(atmState.atmId));
     return promise.then(({ token, cashItems }) => {
       atmState.token = token;
       atmState.cashItems = cashItems;
+      logCash();
     });
   }
 })();
