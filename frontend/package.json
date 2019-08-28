@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "prettier": "prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path node_modules --ignore-path build --ignore-path dist --check",
-    "prettier:write": "prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path node_modules --ignore-path build --ignore-path dist --write",
+    "prettier:fix": "prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path node_modules --ignore-path build --ignore-path dist --write",
     "start": "npx http-server --cors -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
