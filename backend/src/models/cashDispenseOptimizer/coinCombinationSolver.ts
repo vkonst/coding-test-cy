@@ -39,15 +39,16 @@ export default class CoinCombinationSolver {
         const totalValue = multiplyVectors(coins, this.coinDenominations);
 
         // Process trivial cases first
-        if (targetValue === 0 || targetValue < this.smallestCoinValue) return null;
+        const notFound = [];
+        if (targetValue === 0 || targetValue < this.smallestCoinValue) return notFound;
         if (targetValue === this.smallestCoinValue && coins[0] > 0) return coins.map((_, i) => (i === 0 ? 1 : 0));
-        if (totalValue < targetValue) return null;
+        if (totalValue < targetValue) return notFound;
         if (totalValue === targetValue) return coins;
 
         const rawCombinations = this.getRawCombinationsArray(targetValue);
         const comparator = combination => matchCoinCombination(coins, combination, this.biggestCoinIndex);
         const targetCombination = rawCombinations.find(comparator);
-        return targetCombination ? this.rawCombinationToCombination(targetCombination) : null;
+        return targetCombination ? this.rawCombinationToCombination(targetCombination) : notFound;
     };
 
     totalCoinsValue(coins): number {
