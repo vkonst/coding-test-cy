@@ -2,9 +2,11 @@
 
 ## What is this?
 
-This project..
+This is a simple web application that simulates withdrawal of cash from an ATM.\
+_Refer to: [codingAssignment](docs/codingAssignment.md)_
 
 ## Stack
+WIP: shall finally runs as k8s/Docker SWARM stack (not yet implemented)
 
 ### Front-end
 
