@@ -1,15 +1,19 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+// TODO: make maxValue and denominations be module params
+// TODO: allow variable number of denominations (<=7)
+// TODO: implement @private and @static decorators
 
-module.exports = (() => {
+module.exports = ((maxValue, denominations) => {
     'use strict';
+    if (denominations) throwOnBadDenominations;
 
     // Range and number of (integer) values to generate coins combinations for
-    const maxCombinationValue = 100;
+    const maxCombinationValue = maxValue || 199;
     const minCombinationValue = 2;
     const numberOfValues = maxCombinationValue - minCombinationValue + 1;
 
-    // Denominations and numbers of coins to generate combinations from
-    const coinDenominations = [1, 2, 5, 10, 20, 50];
+    // Denominations of coins to generate combinations from
+    const coinDenominations = denominations || [1, 2, 5, 10, 20, 50];
     const [coinOneVal, coinTwoVal, coinThreeVal, coinFourVal, coinFiveVal, coinSixVal] = coinDenominations;
 
     // Maximum numbers of coins in a generated combination
@@ -20,8 +24,8 @@ module.exports = (() => {
     const coinFiveMaxNum = Math.floor(maxCombinationValue / coinFiveVal);
     const coinSixMaxNum = Math.floor(maxCombinationValue / coinSixVal);
 
-    // Index of the biggest coin ("coin six") in array(s) with coins
-    const biggestCoinIndex = 5;
+    // Index of the biggest coin in array(s) with coins
+    const biggestCoinIndex = coinDenominations.length - 1;
 
     return new CoinCombinationSolver();
 
@@ -30,7 +34,7 @@ module.exports = (() => {
             throwOnBadCoinsArray(coins);
 
             // Process trivial cases first
-            if (targetValue === 0) return coins.map(_ => 0);
+            if (targetValue === 0) return coins.map(() => 0);
             if (targetValue === 1 && coins[0] > 0) return coins.map((_, i) => (i === 0 ? 1 : 0));
             const totalValue = multiplyVectors(coins, coinDenominations);
             if (totalValue < targetValue) return null;
@@ -40,12 +44,25 @@ module.exports = (() => {
             const comparator = combination => matchCoinCombination(coins, combination);
             return combinationToCoins(combinations.find(comparator));
         };
+
+        // @static
         this.totalCoinsValue = coins => multiplyVectors(coins, coinDenominations);
         this.getConstants = () => ({
             coinDenominations,
             biggestCoinIndex,
             maxCombinationValue,
         });
+        this.isEnoughCoinsForCombination = (coins, combination) => {
+            throwOnBadCoinsArray(coins);
+            throwOnBadCoinsArray(combination);
+            return matchCoinCombination(coins, combination);
+        };
+
+        // @private
+        // @static
+        this.combinationToCoins = combination => {
+            return combinationToCoins(combination);
+        };
 
         // @private
         this.combinationsList = generateSortedListOfCoinCombinations();
@@ -60,26 +77,17 @@ module.exports = (() => {
             }
             return combinations;
         };
-        // @static
-        this.isEnoughCoinsForCombination = (coins, combination) => {
-            throwOnBadCoinsArray(coins);
-            throwOnBadCoinsArray(combination);
-            return matchCoinCombination(coins, combination);
-        };
-        this.combinationToCoins = combination => {
-            return combinationToCoins(combination);
-        };
     }
 
     /*
     This code runs once only. Therefore CPU/memory usage by the run is not optimized.
-    But the results, dozens of thousand coin combinations, must be optimized:
-    - combinations must be linked to amounts (totalValues), sorted by number of coins, and compact.
-    Therefore coin combinations are packed into the array of byte Buffers.
+    But the results, thousand coin combinations, must be optimized:
+    - combinations must be linked to amounts, sorted by number of coins, and compact.
+    Therefore coin combinations are packed into an array of byte Buffers.
     Each combination represents 8 bytes in a Buffer.
     A Buffer contains all possible combinations for an (integer) amount.
     Combinations in a Buffer are sorted by number of coins (less coins, then more coins).
-    The index of a Buffer in the array and the (shifted) amount (total value) are equal.
+    The index of a Buffer in the array equals to the amount decreased by a constant.
     */
     function generateSortedListOfCoinCombinations() {
         const combinationsLists = Array(numberOfValues).fill(null);
@@ -151,12 +159,21 @@ module.exports = (() => {
         return 256 - numOfCoins;
     }
 
+    function throwOnBadDenominations(denominations) {
+        const error = new Error('denominations must be an array of six sorted (ascending) integer numbers');
+        if (!Array.isArray() || denominations.length !== 6) throw error;
+        denominations.forEach(d => {
+            if (typeof d !== 'number') throw error;
+            if (d < denominations[0]) throw error;
+        });
+    }
+
     function throwOnBadCoinsArray(coins) {
         if (coins.length < biggestCoinIndex + 1)
             throw new Error(`coins must be an array with at least ${biggestCoinIndex + 1} elements`);
     }
     function matchCoinCombination(coins, combination) {
-        for (let i = biggestCoinIndex - 1; i >= 0; i--) {
+        for (let i = biggestCoinIndex; i >= 0; i--) {
             if (coins[i] < combination[8 - i - 1]) break;
             if (i === 0) return true;
         }
@@ -171,5 +188,3 @@ module.exports = (() => {
         }, []);
     }
 })();
-
-// TODO: implement @private and @static decorators

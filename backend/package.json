@@ -4,8 +4,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node ./src/server.ts",
+    "lnt": "./node_modules/.bin/eslint --fix",
     "lint": "./node_modules/.bin/eslint \"**/*.ts\" \"**/*.js\"",
     "lint:fix": "./node_modules/.bin/eslint \"**/*.ts\" \"**/*.js\" --fix",
+    "prt": "./node_modules/.bin/prettier --ignore-path=node_modules --ignore-path=**/build --ignore-path=**/dist --write",
     "prettier": "./node_modules/.bin/prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path=node_modules --ignore-path=**/build --ignore-path=**/dist --check",
     "prettier:fix": "./node_modules/.bin/prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path=node_modules --ignore-path=**/build --ignore-path=**/dist --write",
     "build": "tsc --project tsconfig.json",
