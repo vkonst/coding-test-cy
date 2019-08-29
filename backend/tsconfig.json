@@ -9,7 +9,7 @@
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist",
     "sourceMap": true,
-    "target": "es2017",
+    "target": "es5",
     "typeRoots" : ["./node_modules/@types", "./src/@types"],
     "types": ["node", "jest"]
   },

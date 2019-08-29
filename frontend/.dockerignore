@@ -1,0 +1,32 @@
+src
+doc
+node_modules
+npm-debug.log
+
+# Jetbrains
+.idea
+**/del.me
+**/del.me.*
+**/*.log
+logs
+
+# Runtime data
+pids
+*.pid
+*.seed
+allFiredEvents
+scTopics
+
+# Coverage directory used by tools like istanbul
+coverage
+coverage.json
+coverageEnv
+
+# node-waf configuration
+.lock-wscript
+
+# local env variables
+.env
+
+# macOS
+.DS_Store
