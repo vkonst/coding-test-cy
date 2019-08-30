@@ -2,19 +2,25 @@
 
 ## What is this?
 
-This is a simple web application that simulates withdrawal of cash from an ATM.\
-_Refer to: [codingAssignment](docs/codingAssignment.md)_
+A simple web application that simulates withdrawal of cash from an ATM\
+that is a solution under the [Coding Assignment](docs/codingAssignment.md) (a part of a recruitment process, futher [analysed here](docs/task-analysis.md)).
+
+_NB.: "MUST" specs of the [Definition of Done](docs/definition-of-done.md) implemented only_
 
 ## Stack
-WIP: shall finally runs as k8s/Docker SWARM stack (not yet implemented)
+[Workflow for "MUST" specs](docs/mvp-must-workflow.md)\
+[Workflow for "SHOULD" specs](docs/mvp-should-workflow.md)
 
-### Front-end
+### Front-end (ATM simulation)
+Built using "pure" JS, HTML, CSS.
+- Except for "cash dispense optimizer" module
+    - it selects an optimal set of avaliable coins and banknotes for the amount a customer requests
+    - it is written in TypeScript
+ 
+### Back-end (Bank server(s) simulation)
+RestApi server written in TypeScript on Node.js with express.js.
 
-Built using ...
-
-### Back-end
-
-Written in Node.js ...
+_WIP: shall finally runs as a Docker SWARM stack_
 
 ## Usage
 
