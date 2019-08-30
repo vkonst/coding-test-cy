@@ -54,20 +54,24 @@ _(if there are time/resources left after MUST gets done)_
     - to/from the browser local storge
 8. The FE should provide access token on registration with the BE
 9. The BE should emulate JWT-based assess-control
-    - ATM-id coded in JWT
-    - Session-id coded in JWT
+    - ATM Device Id coded in JWT
+    - ATM Session Id coded in JWT
 
 **COULD**
 _(if there are time/resources left after SHOULD gets done)_
 
-1. The App could run on the public cloud services (e.g. AWS, GCS)
+1. The App could run on public cloud services (e.g. AWS, GCS)
 2. The FE and BE could comunicate via RPC over Websockets
 3. The App could run as a Docker Swarm stack 
 4. BE code could have "core banking plugins"
     - modules which simulates requests to "core banking systems" (e.g. "authorize spending for a client")
 5. BE "services" could use "core plugins" via DI
     - services shall depend upon the interface but not the realization  
-6. 8. The BE could implement JWT-based assess-control
+6. The BE could implement JWT-based assess-control
+7. The BE and the BE could deliver ocasional messages to an ATM client (e.g. special offers)
+    - the BE could subscribe to a message queue via a RabbitMQ broker
+    - the BE could push messages from the queue to the FE over WS
+    - the FE could display the messages in the end of an ATM session 
 
 **WON'T**\
 _(will not do it if time/resources left)_

@@ -64,5 +64,15 @@ I shall demonstrate:
     - understanding of system design principles
         - distributed systems
         - monolith / micro-services
-        - event-driven archetecture
+        - event-driven architecture
     - knowledge of IPC, messaging, interfaces, transport protocols
+    - knowledge of the customer's tech stack: Node.js, ES6, TypeScript, RabbitMQ
+    - knowledge of TS/JS ecosystem tools: npm, lint, prettier, tsc, mocha/jest/...
+
+How to address:\
+- includes "planning" documents
+    - analysis of the requirements
+    - tasks decomposition
+    - definition of done
+- WIP: exists as paper notes yet...
+// TODO: list notes on "how to address expectations" here
