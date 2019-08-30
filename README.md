@@ -24,7 +24,7 @@ _NB.: "MUST have" specs of the [Definition of Done](docs/definition-of-done.md) 
 ### Front-end (ATM simulation)
 - Browser running SPApp
 - Built using "pure" JS, HTML, CSS.
-- Except for "cash dispense optimizer" module
+- Except for ["cash dispense optimizer" module](backend/src/models/cashDispenseOptimizer/coinCombinationSolver.ts)
     - selects coins for the amount a customer requests
     - written in TypeScript
   
