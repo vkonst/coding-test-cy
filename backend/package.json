@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "0.0.1",
   "main": "index.js",
-  "_type":"module",
+  "_type": "module",
   "scripts": {
     "dev": "ts-node ./src/server.ts",
     "lnt": "./node_modules/.bin/eslint --fix",
@@ -11,10 +11,10 @@
     "prt": "./node_modules/.bin/prettier --ignore-path=node_modules --ignore-path=**/build --ignore-path=**/dist --write",
     "prettier": "./node_modules/.bin/prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path=node_modules --ignore-path=**/build --ignore-path=**/dist --check",
     "prettier:fix": "./node_modules/.bin/prettier **/*.ts **/*.js **/*.html **/*.css --ignore-path=node_modules --ignore-path=**/build --ignore-path=**/dist --write",
-    "build": "tsc --project tsconfig.json",
+    "build": "tsc --project tsconfig.json && [ -f .env ] && cp .env dist/ || cp config/default.env dist/.env",
     "clean": "rimraf dist && rimraf coverage",
     "prebuild": "npm run clean",
-    "start": "node ./build/server.js",
+    "start": "node ./dist/server.js",
     "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
     "watch:serve": "ts-node src/index.ts"
   },
@@ -51,15 +51,18 @@
     "typegoose": "^5.6.0"
   },
   "dependencies": {
+    "@types/uuid": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
+    "dotenv": "^8.1.0",
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
     "eslint-plugin-prettier": "^3.1.0",
     "express": "^4.17.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",

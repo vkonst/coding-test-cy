@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
+// eslint-disable-line @typescript-eslint/no-unused-vars
 const mvpFrontend = (() => {
   "use strict";
 
@@ -86,9 +89,9 @@ const mvpFrontend = (() => {
     }
   }
   function displayAtmDeviceId() {
-    document.getElementById("title").innerHTML = `<h1>ATM device #${
-      atmState.atmId
-    }</h1>`;
+    document.getElementById(
+      "title"
+    ).innerHTML = `<h1>ATM device #${atmState.atmId}</h1>`;
   }
   function hideAtmSelector() {
     document.getElementById("atm-select-form").classList.add("invisible");
@@ -155,9 +158,7 @@ const mvpFrontend = (() => {
     return fetch(url)
       .then(response => {
         if (!response.ok) {
-          const errMsg = `failed to fetch initial state from the server (${
-            response.status
-          })`;
+          const errMsg = `failed to fetch initial state from the server (${response.status})`;
           log(errMsg);
           throw new Error(`errMsg`);
         }

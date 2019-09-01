@@ -1,5 +1,5 @@
 import ICoinStack from './coinStack.interface';
-import ICoin from './coin.interface'
+import ICoin from './coin.interface';
 
 export default class CoinStack implements ICoinStack {
     public count: number;

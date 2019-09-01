@@ -4,6 +4,7 @@ import * as express from 'express';
 import IController from './controllers/controller.interface';
 import errorMiddleware from './middleware/error.middleware';
 import loggerMiddleware from './middleware/logger.middleware';
+import authorizeMiddleware from './middleware/authorize.middleware';
 
 class App {
     public app: express.Application;
@@ -12,7 +13,7 @@ class App {
         this.app = express();
 
         this.connectToTheDatabase();
-        this.initializeMiddlewares();
+        this.initializeMiddleware();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
     }
@@ -27,9 +28,10 @@ class App {
         return this.app;
     }
 
-    private initializeMiddlewares() {
+    private initializeMiddleware() {
         this.app.use(bodyParser.json());
         this.app.use(cookieParser());
+        this.app.use(authorizeMiddleware);
         this.app.use(loggerMiddleware);
     }
 

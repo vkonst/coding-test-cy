@@ -36,13 +36,14 @@ _(if there are time/resources left after MUST gets done)_
     - authorize user (ATM customer)
     - authorize withdrawal transactions (see "MUST #4")
     - register transaction results
-5. The BE code shall have distinct "services" - modules that simulates micro-services
+5. The BE code shall have distinct "services"
+- modules that simulates micro-services
+- which could be "plugged" not just via RESTApi but via RPC
     - ATM Devices Service
         - authorizes ATM on the network, keeps records of their state
-    - ATM Dessions Service
+    - ATM Sessions Service
+        - authorizes clients, tracks client statuses
         - tracks/controls client sessions
-    - Client Authorization Service
-        - authorizes clients
     - Transactions Service
         - authorizes/tracks/controls transactions to ATMs
 6. BE services shall emits following events
@@ -53,7 +54,7 @@ _(if there are time/resources left after MUST gets done)_
 7. The FE should save/read its state (coins avaliable)
     - to/from the browser local storge
 8. The FE should provide access token on registration with the BE
-9. The BE should emulate JWT-based assess-control
+9. The BE should simulate JWT-based assess-control
     - ATM Device Id coded in JWT
     - ATM Session Id coded in JWT
 
@@ -61,7 +62,7 @@ _(if there are time/resources left after MUST gets done)_
 _(if there are time/resources left after SHOULD gets done)_
 
 1. The App could run on public cloud services (e.g. AWS, GCS)
-2. The FE and BE could comunicate via RPC over Websockets
+2. The FE and BE could communicate via RPC over Websockets
 3. The App could run as a Docker Swarm stack 
 4. BE code could have "core banking plugins"
     - modules which simulates requests to "core banking systems" (e.g. "authorize spending for a client")

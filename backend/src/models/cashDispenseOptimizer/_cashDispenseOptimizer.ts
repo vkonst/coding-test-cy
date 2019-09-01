@@ -8,10 +8,7 @@ export default class CashDispenseOptimizer {
         for (let i = startIndex; i < sortedCoins.length; i++) {
             const coinStack: ICoinStack = sortedCoins[i];
             if (coinStack.count > 0 && coinStack.coin.denomination <= change) {
-                const coinsNum: number = Math.min(
-                    coinStack.count,
-                    Math.floor((change) / coinStack.coin.denomination),
-                );
+                const coinsNum: number = Math.min(coinStack.count, Math.floor(change / coinStack.coin.denomination));
                 const matches: ICoinStack[] = [new CoinStack(coinStack.coin.denomination, coinsNum) as ICoinStack];
 
                 const changeLeft = change - coinsNum * coinStack.coin.denomination;
