@@ -21,10 +21,10 @@ const mvpFrontend = (() => {
     curScreenInd: 0,
     screens: [
       /*0*/ ["boot-screen", 1, 0],
-      /*1*/ ["welcome-screen", 2, 1],
-      /*2*/ ["login-screen", 3, 1],
+      /*1*/ ["login-screen", 2, 1],
+      /*2*/ ["select-product", 3, 1],
       /*3*/ ["withdraw-screen", 4, 1],
-      /*4*/ ["results-screen", 3, 1]
+      /*4*/ ["results-screen", 2, 1]
     ],
     onChanged: (fromId, toId) => {
       log(`Screen switched: ${fromId} => ${toId}`);

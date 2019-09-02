@@ -10,8 +10,8 @@ _"SHOULD" specs of the [Definition of Done](definition-of-done.md)_
              |             _______________________________________________________________________
              |              :                                 :  ** Back-End Server**
              +-------------->==POST /api/atm/register=========>+-TM Devices Service
-                            :                                 :  |  +>> emits "ATM Connected" event
-+--------------------------->==POST /api/atm/update===========>--+
++--------------------------->==POST /api/atm/update===========>--+  +>> emits "ATM Connected" event
+|                           :              *                  :  |
 |     +------+------+<------<=Registed/Updated, JWT: {atmId}==<--+
 |     | LoginScreen |       :                                 :
 |     +------+------+       :                                 :
@@ -19,7 +19,7 @@ _"SHOULD" specs of the [Definition of Done](definition-of-done.md)_
 |       +Open Session------->==POST /api/session/open=========>--ATM Sessions Service
 |                           :               *                 :  |  +-> calls "Authorize bank client" Plugin
 |     +------+------+<------<====Opened, JWT:{atmId, sessId}==<--+  +>> emits "Client Connected" event
-|  +->|SlctOpertScrn|       :                                 :     +>> emits "New ATM Session" event   
+|  +->|SelProductScr|       :                                 :     +>> emits "New ATM Session" event   
 |  |  +-+----+------+       :                                 :
 |  |         |              :                                 :
 |  (cancel)  |              :                                 :
@@ -28,7 +28,7 @@ _"SHOULD" specs of the [Definition of Done](definition-of-done.md)_
 |  |  |WithdrwScreen|       :                                 :
 |  |  +------+------+       :                                 :
 |  |         |              :                                 :
-|  |      +Select Coins------>==POST /api/tx/wthdrw/authorize=>--Transactions Service
+|  |      +Select Coins----->==POST /api/tx/wthdrw/authorize==>--Transactions Service
 |  |       |                :                *                :  |  +-> calls "Authorize Client TX" Plugin
 |  |       |    +-----------<====Authorized, TxId=============<--+  |
 |  |       |  +Pay out      :                                 :  |  |

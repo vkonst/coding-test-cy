@@ -22,19 +22,30 @@
         >>> click to continue <<<
       </button>
     </div>
-    <div id="welcome-screen" class="screen invisible">
+    <div id="select-product" class="screen invisible">
       <hr />
-      <h2>Welcome!</h2>
+      <h2>What you would like to do?</h2>
+      <form
+              onsubmit="mvpFrontend.nextScreen(); return false"
+              onreset="mvpFrontend.nextScreen('back')"
+      >
       <div class="bottom">
         <button
-          id="start-btn"
+          id="withdraw-product-select-btn"
           class="button button-green"
-          type="button"
-          onclick="mvpFrontend.nextScreen();"
+          type="submit"
         >
-          start
+         Withdraw cash
+        </button>
+        <button
+          id="cancel-product-select-btn"
+          class="button button-red"
+          type="reset"
+        >
+          Cancell
         </button>
       </div>
+      </form>
     </div>
     <div id="login-screen" class="screen invisible">
       <hr />
