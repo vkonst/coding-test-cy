@@ -7,14 +7,17 @@ import AtmSessionService from './services/atmSession.service';
 import AtmSessionController from './controllers/api/atmSessionController';
 import AtmTransactionService from './services/atmTransaction.service';
 import AtmTransactionController from './controllers/api/atmTransactionController';
+import IAtmTransactionService from './services/atmTransactionService.interface';
 
 validateEnv(process.env);
 
 const services = {
     atmDeviceService: new AtmDeviceService(),
-    atmSessionService: new AtmSessionService(),
-    atmTransactionService: new AtmTransactionService(),
+    atmSessionService: undefined as AtmSessionService,
+    atmTransactionService: undefined as IAtmTransactionService,
 };
+services.atmSessionService = new AtmSessionService(services.atmDeviceService);
+services.atmTransactionService = new AtmTransactionService(services.atmSessionService);
 
 const app = new App([
     new AtmDeviceController(services.atmDeviceService),

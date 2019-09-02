@@ -3,4 +3,5 @@ import { IAtmSessionSrvcCloseReq, IAtmSessionSrvcOpenReq, IAtmSessionSrvcOpenRes
 export default interface IAtmSessionService {
     openSession(sessionRequest: IAtmSessionSrvcOpenReq): Promise<IAtmSessionSrvcOpenResp>;
     closeSession(atmRequest: IAtmSessionSrvcCloseReq): Promise<IAtmSessionSrvcResp>;
+    isValidSession(sessId: string, atmId: string): Promise<boolean>;
 }

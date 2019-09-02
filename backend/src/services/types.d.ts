@@ -2,8 +2,11 @@ import { Currency } from '../@types/types';
 
 // FIXME: make status, atmStatus, sessStatus, txStatus, txType be 'enum' rather then 'string'
 
-export interface IAtmDeviceSrvcReq {
+interface IAtmReq {
     atmId: string;
+}
+
+export interface IAtmDeviceSrvcReq extends IAtmReq {
     atmStatus: string;
 }
 
@@ -20,7 +23,7 @@ export interface IAtmDeviceSrvcResp {
     status: string;
 }
 
-export interface IAtmSessionSrvcReq {
+export interface IAtmSessionSrvcReq extends IAtmReq {
     sessStatus: string;
 }
 
@@ -41,13 +44,13 @@ export interface IAtmSessionSrvcOpenResp {
     sessId: string;
 }
 
-export interface IAtmTransactionSrvcReq {
+export interface IAtmTransactionSrvcReq extends IAtmReq {
     txType: string;
     txStatus: string;
 }
 
 export interface IAtmTransacrionSrvcAuthorizeReq extends IAtmTransactionSrvcReq {
-    atmSessId: string;
+    sessId: string;
     txAmount: number;
     txCurrency: Currency;
 }
